@@ -1,0 +1,15 @@
+syntax = "proto3";
+package identityflow.identityflow;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+
+option go_package = "identityflow/x/identityflow/types";
+
+// Params defines the parameters for the module.
+message Params {
+  option (amino.name) = "identityflow/x/identityflow/Params";
+  option (gogoproto.equal) = true;
+
+  
+}
