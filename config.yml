@@ -1,22 +1,70 @@
 version: 1
 validation: sovereign
-accounts: 
-- name: alice
-  coins:
-  - 20000token
-  - 200000000stake
-- name: bob
-  coins:
-  - 10000token
-  - 100000000stake
+accounts:
+  - name: alice
+    coins:
+      - 20000000000garden
+      - 200000000000000guard
+  - name: bob
+    coins:
+      - 10000000000garden
+      - 100000000000000guard
 client:
   openapi:
     path: docs/static/openapi.yml
 faucet:
   name: bob
   coins:
-  - 5token
-  - 100000stake
+    - 5000000garden
+    - 100000000000guard
 validators:
-- name: alice
-  bonded: 100000000stake
+  - name: alice
+    bonded: 100000000000000guard
+genesis:
+  chain_id: "cosmos:identityflow"
+  consensus_params:
+    block:
+      max_bytes: "22020096"
+      max_gas: "-1"
+      time_iota_ms: "5000"
+  app_state:
+    crisis:
+      constant_fee:
+        denom: "guard"
+    gov:
+      params:
+        min_deposit:
+          - denom: "guard"
+            amount: "10000000000000"
+        expedited_min_deposit:
+          - denom: "guard"
+            amount: "50000000000000"
+    mint:
+      params:
+        mint_denom: "guard"
+    staking:
+      params:
+        bond_denom: "guard"
+        unbonding_time: "1814400s"
+    bank:
+      denom_metadata:
+        - base: "garden"
+          denom_units:
+            - denom: "garden"
+              exponent: 0
+            - denom: "idf"
+              exponent: 6
+          description: "The native transaction token of the IdentityFlow network"
+          display: "idf"
+          name: "IdentityFlow Token"
+          symbol: "IDF"
+        - base: "guard"
+          denom_units:
+            - denom: "guard"
+              exponent: 0
+            - denom: "idfs"
+              exponent: 6
+          description: "The staking token of the IdentityFlow network"
+          display: "idfs"
+          name: "IdentityFlow Staking Token"
+          symbol: "IDFS"
